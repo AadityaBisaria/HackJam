@@ -1,11 +1,9 @@
-
 import argparse
 from dotenv import load_dotenv
 import os
 from langchain_community.vectorstores import Chroma
 from langchain_openai import OpenAIEmbeddings, ChatOpenAI
 from langchain.prompts import ChatPromptTemplate
-from rich import print
 CHROMA_PATH = "chroma"
 
 PROMPT_TEMPLATE = """
@@ -24,12 +22,6 @@ from PIL import Image
 pipe = DiffusionPipeline.from_pretrained("stabilityai/stable-diffusion-xl-base-1.0", torch_dtype=torch.float16, use_safetensors = True, variant = "fp16")
 pipe.to("cuda")
 
-prompt = "Ancient Athenian Soldier"
-
-images = pipe(prompt=prompt).images[0]
-images.show()
-images.save("ancient athenian soldier.png")  # Save the image to a file
-print("Image saved.png'")
 # Load environment variables
 load_dotenv()
 
@@ -45,7 +37,7 @@ def main():
     db = Chroma(persist_directory=CHROMA_PATH, embedding_function=embedding_function)
 
     # Search the DB.
-    results = db.similarity_search_with_relevance_scores(query_text, k=3)
+    results = db.similarity_search_with_relevance_scores(query_text, k=4)
     if len(results) == 0 or results[0][1] < 0.7:
         print(f"Unable to find matching results.")
         return
@@ -53,20 +45,20 @@ def main():
     context_text = "\n\n---\n\n".join([doc.page_content for doc, _score in results])
     prompt_template = ChatPromptTemplate.from_template(PROMPT_TEMPLATE)
     prompt = prompt_template.format(context=context_text, question=query_text)
-    print(prompt)
+#    print(prompt)
 
     model = ChatOpenAI()
     response_text = model.predict(prompt)
 
     sources = [doc.metadata.get("source", None) for doc, _score in results]
     formatted_response = f"Response: {response_text}\nSources: {sources}"
-    print(formatted_response)
+    print(response_text)
 
     prompt = formatted_response
 
     images = pipe(prompt=prompt).images[0]
     images.show()
-    images.save("A.png")  # Save the image to a file
+    images.save("Resulting_Image.png")  # Save the image to a file
 
 if __name__ == "__main__":
     main()
