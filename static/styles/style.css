@@ -1,0 +1,221 @@
+/* style.css */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  font-family: 'Times New Roman', Times, serif;
+  background-color: #f4f0e6;
+  color: #4e4b46;
+}
+
+/* Container for the entire layout */
+.chat-container {
+  display: flex;
+  justify-content: space-between;
+  max-width: 1000px;
+  width: 100%;
+  margin: 20px;
+}
+
+/* Style for the chatbot section */
+.msger {
+  display: flex;
+  flex-direction: column;
+  flex: 3;
+  max-width: 600px;
+  height: 80vh;
+  background: #fff5e4;
+  border: 3px solid #8b5e3c;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  margin-right: 20px; /* Space between chatbot and sidebar */
+}
+
+.msger-header {
+  padding: 10px;
+  background-color: #8b5e3c;
+  color: #fff;
+  font-size: 20px;
+  text-align: center;
+  font-weight: bold;
+  border-bottom: 2px solid #654321;
+}
+
+.msger-chat {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+  background: #fdf8e3;
+}
+
+.msg {
+  display: flex;
+  align-items: flex-end;
+  margin-bottom: 15px;
+}
+
+.left-msg .msg-bubble {
+  background: #d7c1a0;
+  color: #4e4b46;
+}
+
+.right-msg .msg-bubble {
+  background: #f4e2ba;
+  color: #3e3b35;
+}
+
+.msg-bubble {
+  max-width: 75%;
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 15px;
+}
+
+.msg-info {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: #775f44;
+  margin-bottom: 4px;
+}
+
+.msger-inputarea {
+  display: flex;
+  padding: 10px;
+  background: #d7c1a0;
+}
+
+.msger-input {
+  flex: 1;
+  border: 2px solid #8b5e3c;
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 14px;
+  color: #4e4b46;
+}
+
+.msger-send-btn {
+  background: #8b5e3c;
+  border: none;
+  color: #fff;
+  padding: 10px 15px;
+  margin-left: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.msger-send-btn:hover {
+  background: #654321;
+}
+
+
+.sidebar {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background-color: #fff5e4;
+  border: 3px solid #8b5e3c;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  padding: 20px;
+}
+
+.prompts-image {
+  width: 100%;
+  max-width: 400px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.prompt-list h3 {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+  color: #4e4b46;
+}
+
+.prompt-list ul {
+  list-style: none;
+  padding: 0;
+}
+
+.prompt-list li {
+  margin: 8px 0;
+  font-size: 1em;
+  color: #4e4b46;
+}
+.prompts-image {
+  width: 100%;
+  border: 2px solid #8b5e3c; 
+  border-radius: 5px; 
+}
+
+.prompts-content {
+  text-align: left;
+  padding: 10px; 
+}
+
+.prompts-title {
+  margin-top: 10px; 
+}
+
+.prompts-section {
+  padding: 20px;
+  border: 2px solid #8b5e3c;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Zoom Feature Styles */
+.prompts-image {
+  width: 100%;
+  max-width: 400px; /* Ensure the image doesn't exceed its maximum size */
+  border-radius: 10px;
+  margin-bottom: 10px;
+  cursor: pointer; /* Change cursor to pointer for better UX */
+  transition: transform 0.3s ease; /* Smooth zoom transition */
+}
+
+.prompts-image.zoomed {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1.0); /* Scale up the image */
+  z-index: 1000; /* Bring the zoomed image to the front */
+  max-width: 90%;
+  max-height: 90%;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8); /* Dark background for overlay */
+  z-index: 999; /* Ensure overlay is above other elements */
+  display: none; /* Hidden by default */
+}
+
+.prompt-list ul {
+  list-style-type: none; /* Remove bullet points from the list */
+  padding: 0; /* Remove default padding */
+}
+
+.prompt-list .faq-item {
+  cursor: pointer; /* Change cursor to pointer on hover */
+  transition: text-decoration 0.2s ease; /* Smooth transition for underline */
+}
+
+/* Underline on hover */
+.prompt-list .faq-item:hover {
+  text-decoration: underline; /* Underline text on hover */
+}
